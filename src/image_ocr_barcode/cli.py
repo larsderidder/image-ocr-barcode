@@ -1,20 +1,20 @@
 import argparse
 import json
 import os
+from dataclasses import dataclass
 from typing import Iterable, List, Optional
 
 
+@dataclass
 class ScanOptions:
     """Runtime options for an image scan session."""
-
-    def __init__(self, patterns, limit, ocr, barcodes, gcv, lang, emit_json):
-        self.patterns = patterns
-        self.limit = limit
-        self.ocr = ocr
-        self.barcodes = barcodes
-        self.gcv = gcv
-        self.lang = lang
-        self.emit_json = emit_json
+    patterns: List[str]
+    limit: Optional[int]
+    ocr: bool
+    barcodes: bool
+    gcv: bool
+    lang: str
+    emit_json: bool
 
 
 def collect_paths(root: str, patterns: Iterable[str]) -> List[str]:

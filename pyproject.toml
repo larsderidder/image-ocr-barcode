@@ -1,2 +1,33 @@
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "image-ocr-barcode"
+version = "0.1.0"
+description = "CLI for OCR, barcode, and optional vision label scans"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [{ name = "Lars de Ridder", email = "lars@xithing.io" }]
+dependencies = [
+  "pillow>=10.0",
+  "pytesseract>=0.3",
+  "pyzbar>=0.1",
+]
+
+[project.urls]
+Homepage = "https://github.com/larsderidder/image-ocr-barcode"
+
+[project.scripts]
+image-ocr-barcode = "image_ocr_barcode.cli:main"
+
+[project.optional-dependencies]
+vision = ["google-cloud-vision>=3.0"]
+dev = ["pytest>=7.0"]
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
